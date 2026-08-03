@@ -1,5 +1,4 @@
-/*-------------------------------- Constants --------------------------------*/
-const initBoard = Array(9).fill(null)
+/*-------------------------------- Constants --------------------------------*/ 
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -13,7 +12,7 @@ const winningCombos = [
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board = initBoard
+let board = Array(9).fill(null)
 console.log(board);
 let turn = 'X'
 let winner = false
@@ -26,13 +25,15 @@ let tie = false
 const boardEl = document.querySelector('.board')
 const squareEls = document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
-
+const resetBtnEl = document.querySelector('#reset')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
-
-
-render()    
+    board = Array(9).fill(null)
+    turn = 'X'
+    winner = false
+    tie = false
+    render()    
 }
 
 function render() {
@@ -56,30 +57,6 @@ function updateMessage() {
     }
 }
 
-function handleClick(event) {
-    const clickedElement = event.target
-    console.log(clickedElement);
-    if (winner || tie) {
-        console.log('game is over')
-        return
-    }else if (!clickedElement.classList.contains('sqr')) {
-        console.log('its not a square');
-        return
-    }
-    else if (clickedElement.classList.contains('sqr')) {
-        const squareIndex = clickedElement.id
-        if (board[squareIndex] === 'X' || board[squareIndex] === 'O') {
-            console.log('Square is already taken');
-            return
-        }else if (board[squareIndex] === null) {
-            placePiece(squareIndex)
-            checkForWinner()
-            checkForTie()
-            switchPlayerTurn()
-            render()
-        }
-    }
-}
 
 function placePiece(idx) {
     board[idx] = turn
@@ -118,7 +95,32 @@ function switchPlayerTurn() {
     }
 }
 
+function handleClick(event) {
+    const clickedElement = event.target
+    console.log(clickedElement);
+    if (winner || tie) {
+        console.log('game is over')
+        return
+    }else if (!clickedElement.classList.contains('sqr')) {
+        console.log('its not a square');
+        return
+    }
+    else if (clickedElement.classList.contains('sqr')) {
+        const squareIndex = clickedElement.id
+        if (board[squareIndex] === 'X' || board[squareIndex] === 'O') {
+            console.log('Square is already taken');
+            return
+        }else if (board[squareIndex] === null) {
+            placePiece(squareIndex)
+            checkForWinner()
+            checkForTie()
+            switchPlayerTurn()
+            render()
+        }
+    }
+}
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 boardEl.addEventListener('click', handleClick)
-
+resetBtnEl.addEventListener('click', init)
