@@ -60,7 +60,7 @@ function handleClick(event) {
     const clickedElement = event.target
     console.log(clickedElement);
     if (winner || tie) {
-        console.log('game is over');
+        console.log('game is over')
         return
     }else if (!clickedElement.classList.contains('sqr')) {
         console.log('its not a square');
@@ -73,9 +73,10 @@ function handleClick(event) {
             return
         }else if (board[squareIndex] === null) {
             placePiece(squareIndex)
-            updateBoard()
             checkForWinner()
             checkForTie()
+            switchPlayerTurn()
+            render()
         }
     }
 }
@@ -87,7 +88,7 @@ function placePiece(idx) {
 
 function checkForWinner() {
     winningCombos.forEach((combo) => {
-        if (board[combo[0]] !== null && board[combo[0]] === board[combo[1]] && board[combo[0] === board [combo[2]]]) {
+        if (board[combo[0]] !== null && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
             winner = true
             console.log(winner);
             
@@ -98,9 +99,9 @@ function checkForWinner() {
 function checkForTie () {
     if (winner) {
         return 
-    }else if (board.includes('')){
+    }else if (board.includes(null)){
          tie = false
-    }else if (!board.includes('')) {tie = true}
+    }else if (!board.includes(null)) {tie = true}
 }
 
 function switchPlayerTurn() {
