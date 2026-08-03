@@ -73,7 +73,9 @@ function handleClick(event) {
             return
         }else if (board[squareIndex] === null) {
             placePiece(squareIndex)
+            updateBoard()
             checkForWinner()
+            checkForTie()
         }
     }
 }
@@ -87,8 +89,32 @@ function checkForWinner() {
     winningCombos.forEach((combo) => {
         if (board[combo[0]] !== null && board[combo[0]] === board[combo[1]] && board[combo[0] === board [combo[2]]]) {
             winner = true
+            console.log(winner);
+            
         }
     })
+}
+
+function checkForTie () {
+    if (winner) {
+        return 
+    }else if (board.includes('')){
+         tie = false
+    }else if (!board.includes('')) {tie = true}
+}
+
+function switchPlayerTurn() {
+    if (winner) {
+        return
+    }else if (!winner) {
+        if (turn === 'X') {
+            turn = 'O'
+        }else if (turn === 'O') {
+            turn = 'X'
+        }
+        console.log(turn);
+        
+    }
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
