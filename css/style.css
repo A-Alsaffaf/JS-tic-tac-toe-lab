@@ -1,8 +1,21 @@
 body {
-  background-color: gainsboro;
+  background-color: #00002e;
   /* Use a system font, if none are available use an available sans-sarif */
   font-family: system-ui, sans-serif;
   margin: 0;
+  color: aliceblue;
+}
+
+#game-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#main-content {
+  display: flex;
+  justify-content: center;
 }
 
 .board {
@@ -12,9 +25,47 @@ body {
 }
 
 .sqr {
+  display: flex;
   width: 30%;
   aspect-ratio: 1/1;
-  border: 3px solid black;
+  border: 3px solid white;
+  color: aliceblue;
+  border-radius: 10px;
   font-size: 64px;
   text-align: center;
+  margin: 1px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sqr:hover {
+  background-color: #06065d ;
+}
+
+#reset-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+#reset {
+  background-color: cyan;
+  color: #FA003F;
+  height: 3em;
+  width: 6em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reset:hover {
+  transition: 0.2s all;
+  background-color: #FA003F;
+  color: cyan;
+}
+
+#reset:active {
+  background-color: #e00038;
+  color: cyan;
 }

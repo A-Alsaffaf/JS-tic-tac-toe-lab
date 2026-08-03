@@ -1,4 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/ 
+
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -10,18 +11,16 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-
 /*---------------------------- Variables (state) ----------------------------*/
+
 let board = Array(9).fill(null)
 console.log(board);
 let turn = 'X'
 let winner = false
 let tie = false 
 
-
-
-
 /*------------------------ Cached Element References ------------------------*/
+
 const boardEl = document.querySelector('.board')
 const squareEls = document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
@@ -38,6 +37,7 @@ function init() {
 
 function render() {
     updateBoard()
+    changeSquareColor()
     updateMessage()
 }
 
@@ -56,7 +56,6 @@ function updateMessage() {
         messageEl.textContent = `It's a tie!`
     }
 }
-
 
 function placePiece(idx) {
     board[idx] = turn
@@ -93,6 +92,20 @@ function switchPlayerTurn() {
         console.log(turn);
         
     }
+}
+
+function changeSquareColor () {
+    squareEls.forEach((square) => {
+        if (square.textContent === 'X') {
+            square.style.color = "cyan";
+            square.style.borderColor = "cyan"
+        }else if (square.textContent === 'O') {
+            square.style.color = "#FA003F"
+            square.style.borderColor = "#FA003F"
+        }else if (square.textContent === '') {
+            square.style.borderColor = "aliceblue"
+        }
+    })
 }
 
 function handleClick(event) {
