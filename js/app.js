@@ -73,6 +73,7 @@ function handleClick(event) {
             return
         }else if (board[squareIndex] === null) {
             placePiece(squareIndex)
+            checkForWinner()
         }
     }
 }
@@ -82,7 +83,13 @@ function placePiece(idx) {
     console.log(board);
 }
 
-
+function checkForWinner() {
+    winningCombos.forEach((combo) => {
+        if (board[combo[0]] !== null && board[combo[0]] === board[combo[1]] && board[combo[0] === board [combo[2]]]) {
+            winner = true
+        }
+    })
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
